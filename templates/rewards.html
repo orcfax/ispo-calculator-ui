@@ -1,1 +1,18 @@
-{{ result }}
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+stake key: {{ stake_address }} <br />
+total rewards: {{ total_rewards }}
+<hr>
+{% for key,value in rewards.items() %}
+  epoch: {{ key }} <br>
+  active stake: {{ value[0] }} <br>
+  rewards: {{ value[1] }} <br>
+  <hr>
+{% endfor %}
+
+</body>
+</html>
+
