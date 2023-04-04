@@ -19,7 +19,7 @@ def index():
         for key in report:
             if key == 'error':
                 error_message = report['error']
-                return render_template('error.html', stake_key=stake_key, error_message=error_message)
+                return render_template('error.html', stake_address=stake_key, error_message=error_message)
 
         # format results for UI template
         rewards_dict = {}
