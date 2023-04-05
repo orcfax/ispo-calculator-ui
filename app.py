@@ -26,10 +26,10 @@ def index():
         for item in report['rewards']:
             active_stake = int(item['active_stake'])
             epoch = int(item['epoch'])
-            rewards = float(item['rewards'])
+            rewards = float(item['adjusted_rewards'])
             rewards_dict[epoch] = [active_stake, rewards]
 
-        return render_template('rewards.html', stake_address=report['stake_address'], total_rewards=report['total_rewards'], rewards=rewards_dict)
+        return render_template('rewards.html', stake_address=report['stake_address'], total_rewards=report['total_adjusted_rewards'], rewards=rewards_dict)
 
     return render_template('index.html')
 
