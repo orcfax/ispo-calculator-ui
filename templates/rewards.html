@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-md-12" style="text-align: center; color: #64a19d; font-size: 0.8em; margin-bottom: 10px; margin-top: 2px;">
         <hr>
-        As of epoch { latest_epoch }:
+        As of epoch {{ latest_epoch }}:
       </div>
     </div>
 
@@ -62,23 +62,19 @@
             </tr>
             <tr>
               <th scope="row" style="text-align: right;">Total staked at FAX pool</th>
-              <td>{ total_ada_staked }</td>
+              <td>{{ total_ispo_stake }} ₳</td>
             </tr>
             <tr>
-              <th scope="row" style="text-align: right;">ISPO $FACT rewarded:</th>
-              <td>{ total_ispo_rewards }</td>
-              <tr>
-            <th scope="row" style="text-align: right;">ISPO $FACT bonuses:</th>
-                <td>{ total_ispo_bonus }</td>
+              <th scope="row" style="text-align: right;">Total ISPO $FACT rewarded:</th>
+              <td>{{ total_ispo_rewards }}</td>
+            </tr>
+            <tr>
+              <th scope="row" style="text-align: right;">Total ISPO $FACT bonuses:</th>
+                  <td>{{ total_ispo_bonus }}</td>
               </tr>
-            </tr>
-            <tr>
-              <th scope="row" style="text-align: right;">ISPO $FACT remaining:</th>
-              <td>{ remaining_fact }</td>
-            </tr>
             <tr>
               <th scope="row" style="text-align: right; border: none;">Your share of ISPO rewards:</th>
-              <td style="border: none;">{ reward_share }</td>
+              <td style="border: none;">{{ rewards_share }}</td>
             </tr>
 
           </tbody>
@@ -106,8 +102,8 @@
               <th scope="epoch">{{ key }}</th>
               <td>{{ value[0] }}</td>
               <td>{{ value[1] }}</td>
-              <td>{ bonus }</td>
-              <td>{ epoch_reward_total }</td>
+              <td>{{ value[2] }}</td>
+              <td>{{ value[3] }}</td>
             </tr>
           {% endfor %}
         </tbody>
