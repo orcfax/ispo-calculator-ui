@@ -16,6 +16,8 @@ def index():
         response = requests.get(api_url)
         report = json.loads(response.text)
 
+        print(report)
+
         # check for error message
         for key in report:
             if key == 'error':
@@ -29,7 +31,7 @@ def index():
         for item in report['rewards']:
             active_stake = item['active_stake']
             epoch = int(item['epoch'])
-            epoch_rewards = float(item['base_rewards'])
+            epoch_rewards = item['base_rewards']
             epoch_bonus = item['bonus']
             cumulative_epoch_rewards += float(item['adjusted_rewards'])
             truncated_epoch_rewards = truncate(cumulative_epoch_rewards, 4)
