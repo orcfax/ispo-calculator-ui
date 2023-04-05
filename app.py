@@ -33,7 +33,9 @@ def index():
             epoch = int(item['epoch'])
             epoch_rewards = item['base_rewards']
             epoch_bonus = item['bonus']
-            cumulative_epoch_rewards += float(item['adjusted_rewards'])
+            epoch_total = item['adjusted_rewards']
+            epoch_total = epoch_total.replace(',','')            
+            cumulative_epoch_rewards += float(epoch_total)
             truncated_epoch_rewards = truncate(cumulative_epoch_rewards, 4)
             rewards_dict[epoch] = [active_stake, 
                                    epoch_rewards, epoch_bonus, truncated_epoch_rewards]
