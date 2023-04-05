@@ -27,7 +27,7 @@ def index():
         rewards_dict = {}
         cumulative_epoch_rewards = 0
         for item in report['rewards']:
-            active_stake = int(item['active_stake'])
+            active_stake = item['active_stake']
             epoch = int(item['epoch'])
             epoch_rewards = float(item['base_rewards'])
             epoch_bonus = item['bonus']
@@ -36,7 +36,7 @@ def index():
             rewards_dict[epoch] = [active_stake, 
                                    epoch_rewards, epoch_bonus, truncated_epoch_rewards]
             
-        total_ispo_stake = "{:,.0f}".format(report['live_stake'])
+        #total_ispo_stake = "{:,.0f}".format(report['live_stake'])
 
         total_ispo_rewards = report['ispo_total_adjusted_rewards']
         total_ispo_rewards = total_ispo_rewards.split(".")
@@ -46,8 +46,8 @@ def index():
     
         return render_template('rewards.html',
                                latest_epoch = report['latest_epoch'],
-                               total_ispo_stake = total_ispo_stake,
-                               total_ispo_rewards = total_ispo_rewards,
+                               total_ispo_stake = report['live_stake'],
+                               total_ispo_rewards = report['ispo_total_adjusted_rewards'],
                                total_ispo_rewards_percent = total_ispo_rewards_percent,
                                total_ispo_bonus = report['ispo_total_bonus'],
                                stake_address=report['stake_address'], total_rewards=report['total_adjusted_rewards'],
@@ -65,4 +65,4 @@ def truncate(number, digits) -> float:
     return math.trunc(stepper * number) / stepper
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port='80')
