@@ -11,19 +11,24 @@ def index():
     if request.method == 'POST':
         stake_key = request.form['stake_address']
 
+        print(stake_key)
+        print(type(stake_key))
+
+
+        if stake_key == '':
+            error_message = "nothing entered. please add a stake key address"
+            return render_template('error.html', error_message=error_message)
+
         # connect to API for stake address data
         api_url = api_address + "/get_rewards/" + stake_key
         response = requests.get(api_url)
         report = json.loads(response.text)
 
-        print(report)
-
         # check for error message
         for key in report:
             if key == 'error':
                 error_message = report['error']
-                return render_template('error.html', 
-                                       stake_address=stake_key, error_message=error_message)
+                return render_template('error.html', error_message=error_message)
 
         # format results for UI template
         rewards_dict = {}
